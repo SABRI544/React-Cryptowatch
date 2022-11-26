@@ -1,4 +1,6 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import PercentChange from "./PercentChange";
 
 const HeaderInfos = () => {
   const [headerData, setHeaderData] = useState([]);
@@ -13,8 +15,22 @@ const HeaderInfos = () => {
       <ul className="title">
         <li>
           <h1>
-            <img src="./assets/logo.png" alt="" /> Watch Tower
+            <img src="./assets/logo.png" alt="logo" /> Watch Tower
           </h1>
+        </li>
+        <li>
+          Crypto-monnaies :{" "}
+          {headerData.active_cryptocurrencies &&
+            headerData.active_cryptocurrencies.toLocaleString()}
+        </li>
+        <li>Marchés : {headerData.markets && headerData.markets}</li>
+      </ul>
+      <ul className="infos-mkt">
+        <li className="global-market">
+          Global Market Cap :{" "}
+          <PercentChange
+            percent={headerData.market_cap_change_percentage_24h_usd}
+          />
         </li>
       </ul>
     </div>
