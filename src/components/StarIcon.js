@@ -18,6 +18,11 @@ const StarIcon = ({ coinId }) => {
     }
     if (favList) {
       if (favList.includes(id)) {
+        window.localStorage.coinList = favList.filter((coin) => coin !== id);
+        setLike(false);
+      } else {
+        window.localStorage.coinList = [...favList, coinId];
+        setLike(true);
       }
     } else {
       window.localStorage.coinList = coinId;
