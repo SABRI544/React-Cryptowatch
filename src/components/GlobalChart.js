@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Treemap, Tooltip } from "recharts";
+import { Tooltip, Treemap } from "recharts";
 import colors from "../styles/_settings.scss";
 
 const GlobalChart = ({ coinsData }) => {
@@ -8,7 +8,7 @@ const GlobalChart = ({ coinsData }) => {
   const colorPicker = (number) => {
     if (number >= 20) {
       return colors.color1;
-    } else if (number > 5) {
+    } else if (number >= 5) {
       return colors.green2;
     } else if (number >= 0) {
       return colors.green1;
@@ -20,6 +20,7 @@ const GlobalChart = ({ coinsData }) => {
       return colors.black2;
     }
   };
+
   const excludeCoin = (coin) => {
     if (
       coin === "usdt" ||
@@ -37,13 +38,14 @@ const GlobalChart = ({ coinsData }) => {
 
   useEffect(() => {
     let chartData = [];
+
     if (coinsData.length > 0) {
       for (let i = 0; i < 45; i++) {
         if (excludeCoin(coinsData[i].symbol)) {
           chartData.push({
             name:
               coinsData[i].symbol.toUpperCase() +
-              "" +
+              " " +
               coinsData[i].market_cap_change_percentage_24h.toFixed(1) +
               "%",
             size: coinsData[i].market_cap,
@@ -58,13 +60,14 @@ const GlobalChart = ({ coinsData }) => {
   const TreemapToolTip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
-        <div className="custom-toolTip">
+        <div className="custom-tooltip">
           <p className="label">{payload[0].payload.name}</p>
         </div>
       );
     }
     return null;
   };
+
   return (
     <div className="global-chart">
       <Treemap

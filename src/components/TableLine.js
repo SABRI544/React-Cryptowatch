@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import CoinChart from "./CoinChart";
 import PercentChange from "./PercentChange";
 import StarIcon from "./StarIcon";
@@ -17,6 +16,7 @@ const TableLine = ({ coin, index }) => {
       return num;
     }
   };
+
   const mktCapFormater = (num) => {
     let newNum = String(num).split("").slice(0, -6);
     return Number(newNum.join(""));
@@ -28,7 +28,7 @@ const TableLine = ({ coin, index }) => {
         <StarIcon coinId={coin.id} />
         <p>{index + 1}</p>
         <div className="img">
-          <img src={coin.image} heoght="20 " alt="logo" />
+          <img src={coin.image} height="20" alt="logo" />
         </div>
         <div className="infos">
           <div

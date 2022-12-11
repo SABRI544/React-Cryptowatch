@@ -11,11 +11,16 @@ const StarIcon = ({ coinId }) => {
       }
     }
   });
+
   const idChecker = (id) => {
     let favList = null;
+
     if (window.localStorage.coinList) {
       favList = window.localStorage.coinList.split(",");
     }
+
+    console.log(favList);
+
     if (favList) {
       if (favList.includes(id)) {
         window.localStorage.coinList = favList.filter((coin) => coin !== id);
